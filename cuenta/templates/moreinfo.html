@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="/static/assets/css/argon-dashboard.css?v=1.1.0" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="header bg-gradient-primary pt-2 pt-md-8">
+            <div class="container-fluid">
+            </div>
+        </div>
+        <div class="container-fluid mt--7">
+        <div class="row">
+            <div class="col">
+              <div class="card shadow">
+                <div class="card-header border-0">
+                  <h3 class="mb-0">{{ ne.hostname }}</h3>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col" width="40%">Details</th>
+                        <th scope="col" width="60%">Location</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">
+                          <div class="media align-items-center">Modelo:{{ ne.modelo }}
+                          </div>
+                        </th>
+                        <td rowspan="9">
+                            <div class="mapouter">
+                                <div class="gmap_canvas">
+                                    <iframe width="600" height="350" id="gmap_canvas" src="https://maps.google.com/maps?q=19.48666,%20-99.15525&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                                </div>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <div class="media align-items-center">IP: {{ ne.ip_lb0 }}
+                          </div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <div class="media align-items-center"><hr>
+                          </div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <div class="media align-items-center">Divisional: {{ ne.divisional }}
+                          </div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <div class="media align-items-center">Estado: {{ ne.estado }}
+                          </div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <div class="media align-items-center">Ciudad: {{ ne.ciudad }}
+                          </div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <div class="media align-items-center">Central: {{ ne.central }}
+                          </div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <div class="media align-items-center"><hr>
+                          </div>
+                        </th>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <div class="media align-items-center">Cluster: {{ ne.cluster }}
+                          </div>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </body>
+</html>

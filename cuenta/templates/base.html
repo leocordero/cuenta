@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <title>{% block title %} {% endblock %}</title>
+    </head>
+
+    <body>
+        <h1 style="background-color: crimson; color: white; text-align: center;">Aprendiendo django</h1>
+        {% include "barra.html" %}
+        <h3>Pruebas</h3>
+        {% block content %}{% endblock %}
+        <p style="background-color: crimson; color: white; text-align: right;">Gracias por su visita</p>
+    </body>
+</html>

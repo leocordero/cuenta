@@ -1,0 +1,31 @@
+
+  <!--   Core   -->
+  <script src="/static/assets/js/plugins/jquery/dist/jquery.min.js"></script>
+  <script src="/static/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <!--   Optional JS   -->
+  <script src="/static/assets/js/plugins/chart.js/dist/Chart.min.js"></script>
+  <script src="/static/assets/js/plugins/chart.js/dist/Chart.extension.js"></script>
+
+  <!--   G.Maps   -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfYsvCA_8-H16euo_YE0C2hxKGJ_pLTtk"></script>
+
+  <!--   Argon JS   -->
+  
+  <script>
+    var locations = [
+    {% for ne in nes %}
+      ['{{ ne.nombre }}', {{ ne.localizacion }}, {{ forloop.counter }}],
+    {% endfor%}
+    ];
+
+  </script>
+  <script src="/static/assets/js/argon-dashboard.min.js?v=1.1.0"></script>
+  <script src="/static/assets/js/jquery.colorbox.js"></script>
+  <script src="/static/assets/js/jquery.colorbox-min.js"></script>
+  <script>
+    $(document).ready(function(){
+    $(".iframe").colorbox({iframe:true, width:"80%", height:"90%"});
+    });
+  </script>
+
+  
