@@ -1,4 +1,64 @@
+<!DOCTYPE html>
 <html>
-    <head></head>
-    <body>Inventario del equipo</body>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link href="/static/assets/css/argon-dashboard.css?v=1.1.0" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="header bg-gradient-primary pt-2 pt-md-8">
+            <div class="container-fluid">
+            </div>
+        </div>
+        <div class="container-fluid mt--7">
+        <div class="row">
+            <div class="col">
+              <div class="card shadow">
+                <div class="card-header border-0">
+                  <h3 class="mb-0">{{ ne.hostname }}</h3>
+                </div>
+                <div class="table-responsive">
+                  <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">Details</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">
+                          <div class="media align-items-center">
+                              <table>
+                              {% for card in cards %}
+                                {% if forloop.counter0 == 0 %}
+                                <tr>
+                                  <td colspan="5">{{ card.chassis }} {{ card.chass_serial }}</td>
+                                </tr>
+                                {% endif %}
+                                {%  if forloop.counter0 >= 0 %}
+                                    {% if card.port_number == 1 %}
+                                    <tr>
+                                    <td>&nbsp;</td><td>{{ card.id }}</td><td>{{ card.module_name }}</td><td>{{ card.card_serial }}</td><td>{{ card.card_status }}</td><td>{{ card.card_last_change}}</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                                    </tr>
+                                    {% endif %}
+                                    {% if card.port_number >= 1 %}
+                                    <tr>
+                                    <td>&nbsp;</td><td>&nbsp;</td><td>{{ card.port_number }}</td><td>{{ card.port }}</td><td>{{ card.connector }}</td><td>{{ card.port_status }}</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+                                    </tr>
+                                    {% endif %}
+                                {% endif %}
+                              </tr>
+                              {% endfor %}
+                              </table>
+                          </div>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </body>
 </html>

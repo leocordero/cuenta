@@ -8,7 +8,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse
 from django import template
-from app.models import central, inventario, NE, resumen_x_modelo, cluster, casos
+from app.models import central, inventario, NE, resumen_x_modelo, cluster, casos, inventario_fisico
 
 @login_required(login_url="/login/")
 def index(request):
@@ -53,7 +53,7 @@ def domain(request):
 
 def maps(request):
     #nes = central.objects.all().exclude(localizacion='')
-    nes = central.objects.raw("SELECT c.id, (c.nombre||' br '||string_agg(ne.clli, ', ')) as nombre, c.localizacion as nes FROM public.app_central c inner join public.app_ne ne on ne.central_id = c.id where c.localizacion <> '' group by c.id,c.nombre,c.localizacion");
+    nes = central.objects.raw("SELECT c.id, (c.nombre||' br '||string_agg(ne.clli, ', ')) as nombre, c.localizacion as nes FROM public.app_central c inner join public.app_ne ne on ne.central_id = c.id where c.localizacion <> '' group by c.id,c.nombre,c.localizacion")
     return render(request, "maps.html", {'nes':nes})
 
 def moreinfo(request,id):
@@ -61,7 +61,10 @@ def moreinfo(request,id):
     return render(request,"moreinfo.html",{'ne':ne})
 
 def inventory(request,id):
-    return render(request,"inventory.html")
+    ne=inventario.objects.get(id=id)
+    #inv=inventario_fisico.objects.get(clli=ne.hostname)
+    cards = inventario_fisico.objects.raw("select chass_serial, chassis, card_serial, slot as id, module_name,card_serial,card_status,card_last_change,port_number,port,connector,port_status  from public.app_inventario_fisico where clli = '"+str(ne.hostname)+"' group by chass_serial, chassis, card_serial, slot, module_name,card_serial,card_status,card_last_change,port_number,port,connector,port_status  order by slot,port_number")
+    return render(request,"inventory.html",{'ne':ne,'cards':cards})
 
 def SRs(request,id):
     return render(request,"SRs.html")

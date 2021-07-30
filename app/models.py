@@ -6,6 +6,7 @@ Copyright (c) 2019 - present AppSeed.us
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
+from django.db.models.fields import CharField
 from django.db.models.fields.related import ForeignKey
 
 # Create your models here.
@@ -116,6 +117,7 @@ class inventario(models.Model):
     cluster = models.CharField(max_length=30)
     hostname = models.CharField(max_length=25)
     ip_lb0 = models.CharField(max_length=15)
+    modelo = models.CharField(max_length=30)
     casos = models.IntegerField()
 
     class Meta:
@@ -130,3 +132,26 @@ class resumen_x_modelo(models.Model):
     class Meta:
         managed = False
         db_table = 'resumen_x_modelo'
+
+
+class inventario_fisico(models.Model):
+    mes = models.IntegerField(null=True)
+    anio = models.IntegerField(null=True)
+    clli = models.CharField(max_length=20)
+    chass_serial = models.CharField(max_length=20)
+    chassis = models.CharField(max_length=60)
+    card_serial = models.CharField(max_length=20)
+    slot = models.IntegerField(default="0")
+    card = models.CharField(max_length=150)
+    card_last_change = models.CharField(max_length=50)
+    module_name = models.CharField(max_length=60)
+    card_status = models.CharField(max_length=30)
+    connector = models.CharField(max_length=60)
+    conn_serial = models.CharField(max_length=20)
+    port_number = models.IntegerField(default="0")
+    port = models.CharField(max_length=60)
+    port_status = models.CharField(max_length=20)
+    plugg_type = models.CharField(max_length=10)
+    port_last_change = models.CharField(max_length=50)
+    mtu = models.IntegerField(null=True)
+    port_descrip = models.CharField(max_length=200)
